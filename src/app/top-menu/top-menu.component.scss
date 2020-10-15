@@ -7,19 +7,38 @@
   margin-top: 0.2em;
 }
 
-.menu-container > div {
-  padding: 1.5em 0em;
+.menu-container > label {
+  padding-top: 1.5em;
+  padding-bottom: 0.5em;;
   text-align: center;
   width: 100%;
   background-color: #ff006eff;
   cursor: pointer;
+  border-radius: 5px;
 }
 
-.menu-container > div:nth-child(2) {
+.menu-container > label:nth-child(2) {
   border-right: 2px solid white;
   border-left: 2px solid white;
 }
 
-.menu-container > div:hover {
+.menu-container > label:hover {
   font-weight: 950;
+}
+
+label > input {
+  visibility: hidden;
+}
+
+// Handling selection
+.menu-item {
+  visibility: hidden;
+}
+
+input[type="radio"]:checked + .menu-item {
+  visibility: visible;
+  border-top: 2px solid white;
+  margin-top: 1em;
+  width: 60%;
+  background-color: white;
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuItem } from '../Model/MenuItem';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  selectedMenuItem: MenuItem;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  topMenuSelection(menuSelected: MenuItem) {
+    this.selectedMenuItem = menuSelected;
   }
 
 }

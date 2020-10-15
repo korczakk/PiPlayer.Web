@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { MenuItem } from '../Model/MenuItem';
 
 @Component({
   selector: 'app-top-menu',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopMenuComponent implements OnInit {
 
-  constructor() { }
+  @Output() selectedMenu = new EventEmitter<MenuItem>();
 
-  ngOnInit() {
+  MenuItem = MenuItem;
+
+  ngOnInit(): void {
+    this.selectedMenu.emit(MenuItem.Files);
   }
 
+  menuSelected(item: MenuItem) {
+    this.selectedMenu.emit(item);
+  }
 }
