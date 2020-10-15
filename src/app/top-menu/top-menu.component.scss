@@ -1,6 +1,6 @@
 .menu-container {
   display: flex;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   text-transform: uppercase;
   color: white;
   font-size: medium;
@@ -22,7 +22,7 @@
   border-left: 2px solid white;
 }
 
-.menu-container > label:hover {
+.menu-container > label:hover p {
   font-weight: 900;
 }
 
