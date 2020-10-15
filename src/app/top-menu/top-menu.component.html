@@ -1,17 +1,19 @@
 <div class="menu-container">
   <label for="files" (click)="menuSelected(MenuItem.Files)">
-    Files
     <input id="files" name="menu" type="radio" checked="true"/>
+    <p>Files</p>
+
     <hr class="menu-item"/>
   </label>
   <label for="playlists" (click)="menuSelected(MenuItem.Playlists)">
-    Playlists
     <input id="playlists" name="menu" type="radio"/>
+    <p>Playlists</p>
+
     <hr class="menu-item"/>
   </label>
   <label for="netradios" (click)="menuSelected(MenuItem.NetRadios)">
-    NET Radios
     <input id="netradios" name="menu"  type="radio"/>
+    <p>NET Radios</p>
     <hr class="menu-item"/>
   </label>
 </div>

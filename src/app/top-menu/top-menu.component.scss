@@ -23,7 +23,7 @@
 }
 
 .menu-container > label:hover {
-  font-weight: 950;
+  font-weight: 900;
 }
 
 label > input {
@@ -35,10 +35,14 @@ label > input {
   visibility: hidden;
 }
 
-input[type="radio"]:checked + .menu-item {
+input[type="radio"]:checked ~ .menu-item {
   visibility: visible;
   border-top: 2px solid white;
-  margin-top: 1em;
+  margin-bottom: 1em;
   width: 60%;
   background-color: white;
+}
+
+input[type="radio"]:checked ~ p {
+  font-weight: 900;
 }
