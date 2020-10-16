@@ -3,10 +3,14 @@
 
 .content-explorer {
   margin: 1.3em 3em auto 3em;
+  background-color: white;
+  height: calc(100vh - 14em);
+  max-height: 75vh;
+
 }
 
 .player {
   position: absolute;
-  top: 95%;
+  top: 90%;
   width: 100%;
 }
