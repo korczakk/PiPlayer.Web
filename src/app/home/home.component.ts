@@ -8,15 +8,15 @@ import { MenuItem } from '../Model/MenuItem';
 })
 export class HomeComponent implements OnInit {
 
-  selectedMenuItem: MenuItem;
+  menuSlectionItem: MenuItem;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  topMenuSelection(menuSelected: MenuItem) {
-    this.selectedMenuItem = menuSelected;
+  topMenuSelection(menuSelection: MenuItem) {
+    this.menuSlectionItem = menuSelection;
   }
 
 }

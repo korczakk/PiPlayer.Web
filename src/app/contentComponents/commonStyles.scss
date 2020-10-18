@@ -1,0 +1,27 @@
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em;
+  margin: 0.2em auto;
+  border: 1px solid black;
+  cursor: pointer;
+
+  div:first-child {
+    display: flex;
+    align-items: center;
+
+    span {
+      padding-left: 1em;
+    }
+  }
+
+  div:last-child {
+    color: green;
+    padding-left: 1em;
+  }
+}
+
+li:hover {
+  background-color: #FCE4EC;
+}

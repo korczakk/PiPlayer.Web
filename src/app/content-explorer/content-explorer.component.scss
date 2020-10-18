@@ -17,39 +17,4 @@
 .content-list {
   list-style: none;
   font-size: larger;
-
-  :hover {
-    background-color: #FCE4EC;
-  }
-
-  :checked {
-    background-color: #90CAF9;
-  }
 }
-
-.content-list > li {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.5em;
-  margin: 0.2em auto;
-  border: 1px solid black;
-  cursor: pointer;
-
-  div:first-child {
-    display: flex;
-    align-items: center;
-
-    span {
-      padding-left: 1em;
-    }
-  }
-
-  div:last-child {
-    color: green;
-    padding-left: 1em;
-  }
-
-
-}
-

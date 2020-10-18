@@ -8,15 +8,15 @@ import { MenuItem } from '../Model/MenuItem';
 })
 export class TopMenuComponent implements OnInit {
 
-  @Output() selectedMenu = new EventEmitter<MenuItem>();
+  @Output() menuSelection = new EventEmitter<MenuItem>();
 
   MenuItem = MenuItem;
 
   ngOnInit(): void {
-    this.selectedMenu.emit(MenuItem.Files);
+    this.menuSelection.emit(MenuItem.Files);
   }
 
   menuSelected(item: MenuItem) {
-    this.selectedMenu.emit(item);
+    this.menuSelection.emit(item);
   }
 }

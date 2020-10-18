@@ -9,6 +9,9 @@ import { PlayerComponent } from './player/player.component';
 import { HomeComponent } from './home/home.component';
 import { TopMenuComponent } from './top-menu/top-menu.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { FileSystemItemComponent } from './contentComponents/file-system-item/file-system-item.component';
+import { PlaylistItemComponent } from './contentComponents/playlist-item/playlist-item.component';
+import { NetRadioItemComponent } from './contentComponents/net-radio-item/net-radio-item.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     ContentExplorerComponent,
     PlayerComponent,
     HomeComponent,
-    TopMenuComponent
+    TopMenuComponent,
+    FileSystemItemComponent,
+    PlaylistItemComponent,
+    NetRadioItemComponent
   ],
   imports: [
     BrowserModule,
