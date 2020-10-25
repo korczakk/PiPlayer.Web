@@ -1,4 +1,7 @@
+import { Observable } from 'rxjs';
+import { ContentMusic } from '../Model/ContentMusic';
+
 export abstract class MusicService {
-  abstract getData();
+  abstract getData(): Observable<ContentMusic[]>;
   abstract play();
 }

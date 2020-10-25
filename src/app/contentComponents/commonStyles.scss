@@ -4,7 +4,7 @@ li {
   justify-content: space-between;
   padding: 0.5em;
   margin: 0.2em auto;
-  border: 1px solid black;
+  border: 1px solid rgb(153, 153, 153);
   cursor: pointer;
 
   div:first-child {
@@ -19,9 +19,14 @@ li {
   div:last-child {
     color: green;
     padding-left: 1em;
+    visibility: hidden;
   }
 }
 
 li:hover {
   background-color: #FCE4EC;
+
+  div:last-child {
+    visibility: visible;
+  }
 }

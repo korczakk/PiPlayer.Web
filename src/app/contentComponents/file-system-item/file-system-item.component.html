@@ -1,10 +1,11 @@
 <li>
   <div>
-    <mat-icon>folder</mat-icon>
+    <mat-icon *ngIf="content.isFolder">folder</mat-icon>
+    <mat-icon *ngIf="!content.isFolder">music_note</mat-icon>
     <!-- music_note -->
-    <span>name</span>
+    <span>{{content.name}}</span>
   </div>
   <div>
-    <mat-icon>playlist_add</mat-icon>
+    <mat-icon *ngIf="!content.isFolder">playlist_add</mat-icon>
   </div>
 </li>

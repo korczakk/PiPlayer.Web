@@ -1,4 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { ContentMusic } from '../Model/ContentMusic';
 import { MusicService } from './abstractService';
 
 @Injectable({
@@ -6,10 +10,10 @@ import { MusicService } from './abstractService';
 })
 export class FileSystemMusicService implements MusicService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
-  getData() {
-    throw new Error('Method not implemented.');
+  getData(pathToData?: string): Observable<ContentMusic[]> {
+    return this.httpClient.get<ContentMusic[]>(`${environment.serverAddress}/getFolderContent${pathToData ? pathToData : ""}`);
   }
   play() {
     throw new Error('Method not implemented.');

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { MenuItem } from '../Model/MenuItem';
 
 @Component({
@@ -8,15 +9,8 @@ import { MenuItem } from '../Model/MenuItem';
 })
 export class HomeComponent implements OnInit {
 
-  menuSlectionItem: MenuItem;
-
   constructor() { }
 
   ngOnInit() {
   }
-
-  topMenuSelection(menuSelection: MenuItem) {
-    this.menuSlectionItem = menuSelection;
-  }
-
 }

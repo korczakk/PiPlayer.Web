@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ContentMusic } from 'src/app/Model/ContentMusic';
 
 @Component({
   selector: 'app-playlist-item',
   templateUrl: './playlist-item.component.html',
   styleUrls: ['./playlist-item.component.scss', '../commonStyles.scss']
 })
-export class PlaylistItemComponent implements OnInit {
+export class PlaylistItemComponent {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  @Input() content: ContentMusic;
 
 }

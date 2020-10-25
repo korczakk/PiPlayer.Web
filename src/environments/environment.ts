@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  serverAddress: 'http://192.168.1.92:8080'
+  // serverAddress: 'http://192.168.1.92:8080'
+  serverAddress: 'http://localhost:8080'
 };
 
 /*

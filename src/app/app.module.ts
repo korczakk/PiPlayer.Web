@@ -12,6 +12,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FileSystemItemComponent } from './contentComponents/file-system-item/file-system-item.component';
 import { PlaylistItemComponent } from './contentComponents/playlist-item/playlist-item.component';
 import { NetRadioItemComponent } from './contentComponents/net-radio-item/net-radio-item.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { NetRadioItemComponent } from './contentComponents/net-radio-item/net-ra
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

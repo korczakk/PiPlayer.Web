@@ -1,22 +1,19 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { MenuItem } from '../Model/MenuItem';
+import { TopMenuService } from '../Services/top-menu.service';
 
 @Component({
   selector: 'app-top-menu',
   templateUrl: './top-menu.component.html',
   styleUrls: ['./top-menu.component.scss']
 })
-export class TopMenuComponent implements OnInit {
-
-  @Output() menuSelection = new EventEmitter<MenuItem>();
+export class TopMenuComponent {
 
   MenuItem = MenuItem;
 
-  ngOnInit(): void {
-    this.menuSelection.emit(MenuItem.Files);
-  }
+  constructor(private menuService: TopMenuService) {  }
 
-  menuSelected(item: MenuItem) {
-    this.menuSelection.emit(item);
+  menuSelected(item: MenuItem, e) {
+    this.menuService.menuSevection.next(item);
   }
 }

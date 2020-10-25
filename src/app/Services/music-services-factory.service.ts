@@ -15,6 +15,16 @@ export class MusicServicesFactoryService {
     private netRadioMusicService: NetRadioMusicService) { }
 
   getMusicService(menuSelection: MenuItem): MusicService {
-    return this.fileSystemMusicService;
+    switch (menuSelection) {
+      case MenuItem.Files:
+        return this.fileSystemMusicService;
+        break;
+      case MenuItem.NetRadios:
+        return this.netRadioMusicService;
+        break;
+      case MenuItem.Playlists:
+        return this.playlistMusicService;
+        break;
+    }
   }
 }
