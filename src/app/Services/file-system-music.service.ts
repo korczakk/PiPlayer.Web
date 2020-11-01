@@ -14,7 +14,7 @@ export class FileSystemMusicService implements MusicService {
 
   constructor(private httpClient: HttpClient) { }
 
-  setSelectedItem(item: FileSystemMusic) {
+  setItemSelected(item: FileSystemMusic) {
     this.selectedFile = item;
     console.log(item);
   }

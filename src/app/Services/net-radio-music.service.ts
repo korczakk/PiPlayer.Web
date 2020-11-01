@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { ContentMusic } from '../Model/ContentMusic';
 import { NetRadioContentMusic } from '../Model/NetRadioMusic';
 import { MusicService } from './abstractService';
 
@@ -10,10 +9,13 @@ import { MusicService } from './abstractService';
 })
 export class NetRadioMusicService implements MusicService {
 
+  private selectedRadio: NetRadioContentMusic;
+
   constructor(private httpClient: HttpClient) { }
 
-  setSelectedItem(item: ContentMusic) {
-    throw new Error('Method not implemented.');
+  setItemSelected(item: NetRadioContentMusic) {
+    this.selectedRadio = item;
+    console.log(item);
   }
 
   getData(): Promise<NetRadioContentMusic[]>  {

@@ -23,7 +23,7 @@ li {
   }
 }
 
-li:hover {
+li:hover:not(.selected) {
   background-color: #FCE4EC;
 
   div:last-child {

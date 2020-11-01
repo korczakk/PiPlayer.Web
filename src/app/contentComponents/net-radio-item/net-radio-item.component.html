@@ -1,4 +1,4 @@
-<li>
+<li (click)="selectItem()" [class.selected]="content.isSelected">
   <div>
     <mat-icon>radio</mat-icon>
     <span>{{content.name}}</span>

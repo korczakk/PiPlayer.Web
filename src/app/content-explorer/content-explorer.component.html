@@ -12,15 +12,14 @@
           </app-file-system-item>
         </ng-template>
         <ng-template [ngSwitchCase]="menuItem.Playlists">
-          <app-playlist-item *ngFor="let item of contentToDisplay">
+          <app-playlist-item (itemSelected)="itemSelected($event)" [content]="item" *ngFor="let item of contentToDisplay">
           </app-playlist-item>
         </ng-template>
         <ng-template [ngSwitchCase]="menuItem.NetRadios">
-          <app-net-radio-item [content]="item" *ngFor="let item of contentToDisplay">
+          <app-net-radio-item (itemSelected)="itemSelected($event)" [content]="item" *ngFor="let item of contentToDisplay">
           </app-net-radio-item>
         </ng-template>
       </ng-container>
-
     </ul>
   </div>
 </div>

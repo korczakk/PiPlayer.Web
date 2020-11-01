@@ -1,7 +1,5 @@
 import { ContentMusic } from './ContentMusic';
 
-export class NetRadioContentMusic implements ContentMusic {
-  name: string;
-  isFolder: boolean;
+export class NetRadioContentMusic extends ContentMusic {
   radioUrl: string;
 }

@@ -1,4 +1,5 @@
-export interface ContentMusic {
+export class ContentMusic {
   name: string;
   isFolder: boolean;
+  isSelected: boolean;
 }

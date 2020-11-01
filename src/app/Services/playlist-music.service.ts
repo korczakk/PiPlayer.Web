@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
 import { ContentMusic } from '../Model/ContentMusic';
+import { PlaylistsMusic } from '../Model/PlaylistsMusic';
 import { MusicService } from './abstractService';
 
 @Injectable({
@@ -9,8 +9,10 @@ import { MusicService } from './abstractService';
 })
 export class PlaylistMusicService extends MusicService {
 
-  setSelectedItem(item: ContentMusic) {
-    throw new Error('Method not implemented.');
+  private selectedPlaylist: PlaylistsMusic;
+
+  setItemSelected(item: PlaylistsMusic) {
+    this.selectedPlaylist = item;
   }
 
   constructor(private httpClient: HttpClient) {

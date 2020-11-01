@@ -37,7 +37,12 @@ export class ContentExplorerComponent implements OnInit, OnDestroy {
   }
 
   itemSelected(item: ContentMusic) {
-    this.musicService.setSelectedItem(item);
+    let currentlySelectedItem = this.contentToDisplay.find(x => x.isSelected);
+    if(currentlySelectedItem) {
+      currentlySelectedItem.isSelected = false;
+    }
+
+    this.musicService.setItemSelected(item);
   }
 
 }
