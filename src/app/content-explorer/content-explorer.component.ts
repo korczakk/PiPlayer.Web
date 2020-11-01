@@ -16,6 +16,7 @@ export class ContentExplorerComponent implements OnInit, OnDestroy {
   contentToDisplay: ContentMusic[];
   menuSelection: MenuItem;
   menuItem = MenuItem;
+  musicService: MusicService;
 
   private menuSelectionSubscription: Subscription;
 
@@ -27,17 +28,16 @@ export class ContentExplorerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.menuSelectionSubscription = this.topMenuService.menuSevection.subscribe(menuItem => {
+    this.menuSelectionSubscription = this.topMenuService.menuSevection.subscribe(async menuItem => {
       this.menuSelection = menuItem;
-      const musicService: MusicService = this.serviceFactory.getMusicService(menuItem);
+      this.musicService = this.serviceFactory.getMusicService(menuItem);
 
-      musicService.getData().subscribe((data: ContentMusic[]) => {
-        this.contentToDisplay = data;
-      },
-      error => {
-        console.log(error);
-      })
+      this.contentToDisplay = await this.musicService.getData();
     });
+  }
+
+  itemSelected(item: ContentMusic) {
+    this.musicService.setSelectedItem(item);
   }
 
 }

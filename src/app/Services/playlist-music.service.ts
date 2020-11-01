@@ -9,12 +9,16 @@ import { MusicService } from './abstractService';
 })
 export class PlaylistMusicService extends MusicService {
 
+  setSelectedItem(item: ContentMusic) {
+    throw new Error('Method not implemented.');
+  }
+
   constructor(private httpClient: HttpClient) {
     super();
   }
 
-  getData(): Observable<ContentMusic[]>  {
-    return of([]);
+  getData(): Promise<ContentMusic[]>  {
+    return null;
   }
   play() {
     throw new Error('Method not implemented.');

@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { EventEmitter } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { ContentMusic } from 'src/app/Model/ContentMusic';
 
 @Component({
@@ -9,7 +10,11 @@ import { ContentMusic } from 'src/app/Model/ContentMusic';
 export class FileSystemItemComponent {
 
   @Input() content: ContentMusic;
+  @Output() itemSelected = new EventEmitter<ContentMusic>();
 
-  constructor() { }
-
+  selectItem() {
+    if(!this.content.isFolder) {
+      this.itemSelected.emit(this.content);
+    }
+  }
 }

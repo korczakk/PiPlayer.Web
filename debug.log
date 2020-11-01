@@ -3,3 +3,10 @@
 [1018/214841.966:ERROR:directory_reader_win.cc(43)] FindFirstFile: System nie mo¿e odnaleŸæ okreœlonej œcie¿ki. (0x3)
 [1023/225247.026:ERROR:directory_reader_win.cc(43)] FindFirstFile: System nie mo¿e odnaleŸæ okreœlonej œcie¿ki. (0x3)
 [1025/210221.835:ERROR:directory_reader_win.cc(43)] FindFirstFile: System nie mo¿e odnaleŸæ okreœlonej œcie¿ki. (0x3)
+[1031/233446.209:ERROR:directory_reader_win.cc(43)] FindFirstFile: System nie mo¿e odnaleŸæ okreœlonej œcie¿ki. (0x3)
+[1031/235446.227:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1101/000654.754:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1101/001654.770:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1101/001654.770:ERROR:filesystem_win.cc(116)] GetFileAttributes C:\Users\UYTKOW~1\AppData\Local\Temp\.profile\Crashpad\reports\7b758081-61bb-4fc6-b022-dec4a9e630c2.dmp: Nie mo¿na odnaleŸæ okreœlonego pliku. (0x2)
+[1101/001654.771:ERROR:directory_reader_win.cc(43)] FindFirstFile: System nie mo¿e odnaleŸæ okreœlonej œcie¿ki. (0x3)
+[1101/210249.136:ERROR:directory_reader_win.cc(43)] FindFirstFile: System nie mo¿e odnaleŸæ okreœlonej œcie¿ki. (0x3)
