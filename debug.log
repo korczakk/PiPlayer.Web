@@ -10,3 +10,5 @@
 [1101/001654.770:ERROR:filesystem_win.cc(116)] GetFileAttributes C:\Users\UYTKOW~1\AppData\Local\Temp\.profile\Crashpad\reports\7b758081-61bb-4fc6-b022-dec4a9e630c2.dmp: Nie mo¿na odnaleŸæ okreœlonego pliku. (0x2)
 [1101/001654.771:ERROR:directory_reader_win.cc(43)] FindFirstFile: System nie mo¿e odnaleŸæ okreœlonej œcie¿ki. (0x3)
 [1101/210249.136:ERROR:directory_reader_win.cc(43)] FindFirstFile: System nie mo¿e odnaleŸæ okreœlonej œcie¿ki. (0x3)
+[1107/225128.315:ERROR:directory_reader_win.cc(43)] FindFirstFile: System nie mo¿e odnaleŸæ okreœlonej œcie¿ki. (0x3)
+[1107/235259.341:ERROR:directory_reader_win.cc(43)] FindFirstFile: System nie mo¿e odnaleŸæ okreœlonej œcie¿ki. (0x3)

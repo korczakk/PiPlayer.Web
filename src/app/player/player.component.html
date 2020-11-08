@@ -1,3 +1,6 @@
-  <div class="container box">
-    player works!
+  <div class="container box" [class.disabled]="playerState.state === PlayerStateEnum.NotConnected">
+    <mat-icon *ngIf="menuSelection !== menuItem.NetRadios" class="previous">skip_previous</mat-icon>
+    <mat-icon (click)="play()" class="play">play_arrow</mat-icon>
+    <mat-icon class="stop">stop</mat-icon>
+    <mat-icon *ngIf="menuSelection !== menuItem.NetRadios" class="next">skip_next</mat-icon>
   </div>

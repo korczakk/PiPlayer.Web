@@ -1,6 +1,6 @@
 .container {
   margin-top: 1em;
-  height: calc(100vh - 14em);
+  height: calc(100vh - 14.5em);
   max-height: 75vh;
   overflow-y: auto;
 }
@@ -21,4 +21,10 @@
 
 ::ng-deep li.selected {
   background-color: #726da8ff;
+  color: white;
+
+  :last-child {
+    color: white;
+    visibility: visible;
+  }
 }
