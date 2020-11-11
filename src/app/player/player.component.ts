@@ -1,5 +1,5 @@
-import { Component, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { MenuItem } from '../Model/MenuItem';
 import { ServerPlayerState } from '../Model/playerState';
 import { PlayerStateEnum } from '../Model/PlayerStateEnum';
@@ -12,32 +12,41 @@ import { TopMenuService } from '../Services/top-menu.service';
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.scss']
 })
-export class PlayerComponent implements OnDestroy {
+export class PlayerComponent implements OnDestroy, OnInit {
 
   menuSelection: MenuItem;
   menuItem = MenuItem;
   musicService: MusicService;
   playerState: ServerPlayerState;
   PlayerStateEnum = PlayerStateEnum;
+  contentExplorerHasSelectedItem: BehaviorSubject<boolean>;
 
   topMenuServiceSubscription: Subscription;
-  serverPlayerStateSubsription: Subscription;
+  playerStateSubscription: Subscription;
 
-  constructor(private topMenuService: TopMenuService, private musicServiceFactory: MusicServicesFactoryService) {
-    this.topMenuServiceSubscription = topMenuService.menuSevection.subscribe(menuSelection => {
+  constructor(private topMenuService: TopMenuService, private musicServiceFactory: MusicServicesFactoryService) { }
+
+  ngOnInit(): void {
+    this.topMenuServiceSubscription = this.topMenuService.menuSevection.subscribe(menuSelection => {
       this.menuSelection = menuSelection;
 
-      this.musicService = musicServiceFactory.getMusicService(menuSelection);
-      this.serverPlayerStateSubsription = this.musicService.serverPlayerState.subscribe(state => this.playerState = state);
+      this.musicService = this.musicServiceFactory.getMusicService(menuSelection);
+      this.contentExplorerHasSelectedItem = this.musicService.isItemSelected;
     })
+
+    this.playerStateSubscription = this.musicService.serverPlayerState.subscribe(state => this.playerState = state);
   }
 
   ngOnDestroy(): void {
     this.topMenuServiceSubscription.unsubscribe();
-    this.serverPlayerStateSubsription.unsubscribe();
+    this.playerStateSubscription.unsubscribe();
   }
 
   play() {
     this.musicService.play();
+  }
+
+  stop() {
+    this.musicService.stop();
   }
 }

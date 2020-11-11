@@ -1,7 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { stat } from 'fs';
+import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 import { ContentMusic } from '../Model/ContentMusic';
 import { MenuItem } from '../Model/MenuItem';
+import { ServerPlayerState } from '../Model/playerState';
+import { PlayerStateEnum } from '../Model/PlayerStateEnum';
 import { MusicService } from '../Services/abstractService';
 import { MusicServicesFactoryService } from '../Services/music-services-factory.service';
 import { TopMenuService } from '../Services/top-menu.service';
@@ -19,12 +22,14 @@ export class ContentExplorerComponent implements OnInit, OnDestroy {
   musicService: MusicService;
 
   private menuSelectionSubscription: Subscription;
+  private playerStateSubscription: Subscription;
 
   constructor(private serviceFactory: MusicServicesFactoryService,
     private topMenuService: TopMenuService) { }
 
   ngOnDestroy(): void {
     this.menuSelectionSubscription.unsubscribe();
+    this.playerStateSubscription.unsubscribe();
   }
 
   ngOnInit() {
@@ -33,16 +38,36 @@ export class ContentExplorerComponent implements OnInit, OnDestroy {
       this.musicService = this.serviceFactory.getMusicService(menuItem);
 
       this.contentToDisplay = await this.musicService.getData();
+      this.musicService.checkPlayerServerState();
+    });
+
+    this.playerStateSubscription = this.musicService.serverPlayerState.subscribe(state => {
+      this.selectCurrentlyPlayingItem(state);
     });
   }
 
   itemSelected(item: ContentMusic) {
-    let currentlySelectedItem = this.contentToDisplay.find(x => x.isSelected);
-    if(currentlySelectedItem) {
-      currentlySelectedItem.isSelected = false;
-    }
+    this.deselectItem();
 
     this.musicService.setItemSelected(item);
   }
 
+  deselectItem() {
+    let currentlySelectedItem = this.contentToDisplay.find(x => x.isSelected);
+    if(currentlySelectedItem) {
+      currentlySelectedItem.isSelected = false;
+    }
+  }
+
+  selectCurrentlyPlayingItem(currentState: ServerPlayerState) {
+    if (this.contentToDisplay && currentState.state === PlayerStateEnum.Playing) {
+      this.deselectItem();
+
+      let foundContent = this.contentToDisplay.find(this.musicService.currenltyPlayingItemPredicate(currentState));
+      if (foundContent) {
+        foundContent.isSelected = true;
+        this.musicService.setItemSelected(foundContent);
+      }
+    }
+  }
 }

@@ -13,7 +13,7 @@ export class TopMenuComponent {
 
   constructor(private menuService: TopMenuService) {  }
 
-  menuSelected(item: MenuItem, e) {
+  menuSelected(item: MenuItem) {
     this.menuService.menuSevection.next(item);
   }
 }

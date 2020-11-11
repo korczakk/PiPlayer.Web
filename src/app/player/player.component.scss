@@ -4,15 +4,17 @@
   margin-top: 1em;
 }
 
-mat-icon {
-  font-size: 50px;
-  width: auto;
-  height: auto;
-  cursor: pointer;
-  margin: 0.4em 0.2em 0.1em 0.2em;
+button {
   color: #b8336aff;
+  margin: 1em 1em 0.5em 1em;
+
+  mat-icon {
+    font-size: 50px;
+    width: auto;
+    height: auto;
+  }
 }
 
-.disabled mat-icon {
+.mat-icon-button[disabled] {
   color: #edd2e0ff;
 }

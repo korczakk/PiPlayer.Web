@@ -11,17 +11,22 @@ import { WebSocketConnectionService } from './web-socket-connection.service';
   providedIn: 'root'
 })
 export class PlaylistMusicService extends MusicService {
+  getItemSelected(): ContentMusic {
+    throw new Error('Method not implemented.');
+  }
+
   serverPlayerState: BehaviorSubject<ServerPlayerState>;
 
   private selectedPlaylist: PlaylistsMusic;
 
-  constructor(private httpClient: HttpClient, private webSocket: WebSocketConnectionService) {
-    super();
+  constructor(private httpClient: HttpClient, protected webSocket: WebSocketConnectionService) {
+    super(webSocket);
     this.serverPlayerState = webSocket.serverMessages
   }
 
   setItemSelected(item: PlaylistsMusic) {
     this.selectedPlaylist = item;
+    this.isItemSelected.next(true);
   }
 
   getData(): Promise<ContentMusic[]>  {
@@ -29,5 +34,11 @@ export class PlaylistMusicService extends MusicService {
   }
   play() {
     throw new Error('Method not implemented.');
+  }
+
+  currenltyPlayingItemPredicate(currentPlayerState: ServerPlayerState) {
+    return (value: ContentMusic, index: number, obj: ContentMusic[]) => {
+
+    }
   }
 }

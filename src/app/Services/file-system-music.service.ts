@@ -12,18 +12,23 @@ import { WebSocketConnectionService } from './web-socket-connection.service';
   providedIn: 'root'
 })
 export class FileSystemMusicService extends MusicService {
+
   serverPlayerState: BehaviorSubject<ServerPlayerState>;
 
   private selectedFile: FileSystemMusic;
 
-  constructor(private httpClient: HttpClient, private webSocket: WebSocketConnectionService) {
-    super();
+  constructor(private httpClient: HttpClient, protected webSocket: WebSocketConnectionService) {
+    super(webSocket);
     this.serverPlayerState = webSocket.serverMessages
   }
 
   setItemSelected(item: FileSystemMusic) {
     this.selectedFile = item;
-    console.log(item);
+    this.isItemSelected.next(true);
+  }
+
+  getItemSelected(): ContentMusic {
+    return this.selectedFile;
   }
 
   getData(pathToData?: string): Promise<FileSystemMusic[]> {
@@ -32,6 +37,17 @@ export class FileSystemMusicService extends MusicService {
   }
 
   play() {
-    throw new Error('Method not implemented.');
+    this.webSocket.sendCommand({
+      command: 'openFile',
+      parameter: `${this.selectedFile.path}${this.selectedFile.name}`
+    });
+  }
+
+  currenltyPlayingItemPredicate(currentPlayerState: ServerPlayerState) {
+    return (value: FileSystemMusic, index: number, obj: ContentMusic[]) => {
+      if((value.path + value.name) === currentPlayerState.fileName) {
+        return value;
+      }
+    }
   }
 }
