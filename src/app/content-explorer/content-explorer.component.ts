@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { stat } from 'fs';
-import { BehaviorSubject, Subject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ContentMusic } from '../Model/ContentMusic';
 import { MenuItem } from '../Model/MenuItem';
 import { ServerPlayerState } from '../Model/playerState';
@@ -60,7 +59,7 @@ export class ContentExplorerComponent implements OnInit, OnDestroy {
   }
 
   selectCurrentlyPlayingItem(currentState: ServerPlayerState) {
-    if (this.contentToDisplay && currentState.state === PlayerStateEnum.Playing) {
+    if (this.contentToDisplay && (currentState.state === PlayerStateEnum.Playing || currentState.state === PlayerStateEnum.Started)) {
       this.deselectItem();
 
       let foundContent = this.contentToDisplay.find(this.musicService.currenltyPlayingItemPredicate(currentState));
