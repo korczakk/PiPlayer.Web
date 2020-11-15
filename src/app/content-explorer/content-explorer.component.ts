@@ -19,6 +19,7 @@ export class ContentExplorerComponent implements OnInit, OnDestroy {
   menuSelection: MenuItem;
   menuItem = MenuItem;
   musicService: MusicService;
+  breadCrumbs: string[];
 
   private menuSelectionSubscription: Subscription;
   private playerStateSubscription: Subscription;
@@ -32,23 +33,34 @@ export class ContentExplorerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.menuSelectionSubscription = this.topMenuService.menuSevection.subscribe(async menuItem => {
-      this.menuSelection = menuItem;
-      this.musicService = this.serviceFactory.getMusicService(menuItem);
+    this.menuSelectionSubscription = this.topMenuService.menuSevection
+      .subscribe(async menuItem => this.onMenuSelectionChange(menuItem));
 
-      this.contentToDisplay = await this.musicService.getData();
-      this.musicService.checkPlayerServerState();
-    });
+    this.musicService.checkPlayerServerState();
 
     this.playerStateSubscription = this.musicService.serverPlayerState.subscribe(state => {
       this.selectCurrentlyPlayingItem(state);
     });
   }
 
+  async onMenuSelectionChange(menuItem: MenuItem) {
+    this.menuSelection = menuItem;
+    this.musicService = this.serviceFactory.getMusicService(menuItem);
+
+    this.contentToDisplay = await this.musicService.getData();
+    this.breadCrumbs = this.musicService.getBreadCrumbs();
+    this.selectCurrentlyPlayingItem(this.musicService.serverPlayerState.getValue());
+  }
+
   itemSelected(item: ContentMusic) {
     this.deselectItem();
 
     this.musicService.setItemSelected(item);
+  }
+
+  async openFolder(item: ContentMusic) {
+    this.contentToDisplay = await this.musicService.getData(item.name);
+    this.breadCrumbs = this.musicService.getBreadCrumbs();
   }
 
   deselectItem() {

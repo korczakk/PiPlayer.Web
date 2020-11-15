@@ -8,11 +8,12 @@ export abstract class MusicService {
   constructor(protected webSocket: WebSocketConnectionService) { }
 
   abstract serverPlayerState: BehaviorSubject<ServerPlayerState>;
-  abstract getData(): Promise<ContentMusic[]>;
+  abstract getData(pathToData?: string): Promise<ContentMusic[]>;
   abstract play();
   abstract setItemSelected(item: ContentMusic);
   abstract currenltyPlayingItemPredicate(currentPlayerState: ServerPlayerState);
   abstract getItemSelected(): ContentMusic;
+  abstract getBreadCrumbs(): string[];
 
   isItemSelected = new BehaviorSubject<boolean>(false);
 

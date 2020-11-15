@@ -11,6 +11,9 @@ import { WebSocketConnectionService } from './web-socket-connection.service';
   providedIn: 'root'
 })
 export class PlaylistMusicService extends MusicService {
+  getBreadCrumbs(): string[] {
+    return [];
+  }
   getItemSelected(): ContentMusic {
     throw new Error('Method not implemented.');
   }

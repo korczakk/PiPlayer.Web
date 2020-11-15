@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatButtonModule, MatIconModule } from '@angular/material/'
+import { MatButtonModule, MatChipsModule, MatIconModule } from '@angular/material/'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +13,7 @@ import { FileSystemItemComponent } from './contentComponents/file-system-item/fi
 import { PlaylistItemComponent } from './contentComponents/playlist-item/playlist-item.component';
 import { NetRadioItemComponent } from './contentComponents/net-radio-item/net-radio-item.component';
 import { HttpClientModule } from '@angular/common/http';
+import { BreadCrumbsComponent } from './bread-crumbs/bread-crumbs.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
     TopMenuComponent,
     FileSystemItemComponent,
     PlaylistItemComponent,
-    NetRadioItemComponent
+    NetRadioItemComponent,
+    BreadCrumbsComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,8 @@ import { HttpClientModule } from '@angular/common/http';
     NoopAnimationsModule,
     MatIconModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

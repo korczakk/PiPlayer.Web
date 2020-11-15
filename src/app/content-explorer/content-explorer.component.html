@@ -1,14 +1,18 @@
 <div class="container box">
 
   <div class="content-path-box">
-    <p>File path</p>
+    <app-bread-crumbs [breadCrumbs]="breadCrumbs">
+    </app-bread-crumbs>
   </div>
 
   <div class="content-box">
     <ul class="content-list">
       <ng-container [ngSwitch]="menuSelection">
         <ng-template [ngSwitchCase]="menuItem.Files">
-          <app-file-system-item (itemSelected)="itemSelected($event)" [content]="item" *ngFor="let item of contentToDisplay">
+          <app-file-system-item
+          (itemSelected)="itemSelected($event)"
+          [content]="item" *ngFor="let item of contentToDisplay"
+          (openFolder)="openFolder($event)">
           </app-file-system-item>
         </ng-template>
         <ng-template [ngSwitchCase]="menuItem.Playlists">

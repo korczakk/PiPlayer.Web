@@ -16,6 +16,7 @@ export class FileSystemMusicService extends MusicService {
   serverPlayerState: BehaviorSubject<ServerPlayerState>;
 
   private selectedFile: FileSystemMusic;
+  private relativePath = ['/'];
 
   constructor(private httpClient: HttpClient, protected webSocket: WebSocketConnectionService) {
     super(webSocket);
@@ -32,8 +33,13 @@ export class FileSystemMusicService extends MusicService {
   }
 
   getData(pathToData?: string): Promise<FileSystemMusic[]> {
-    return this.httpClient.get<FileSystemMusic[]>(`${environment.serverAddress}/getFolderContent${pathToData ? pathToData : ""}`)
-    .toPromise();
+    if(pathToData) {
+      this.relativePath.push(pathToData);
+    }
+    const path = this.relativePath.join('/');
+    const query = `?foldername=${path}`;
+    return this.httpClient.get<FileSystemMusic[]>(`${environment.serverAddress}/getFolderContent${query}`)
+      .toPromise();
   }
 
   play() {
@@ -49,5 +55,9 @@ export class FileSystemMusicService extends MusicService {
         return value;
       }
     }
+  }
+
+  getBreadCrumbs(): string[] {
+    return this.relativePath;
   }
 }

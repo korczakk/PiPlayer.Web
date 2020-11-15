@@ -1,4 +1,4 @@
-<li (click)="selectItem()" [class.selected]="content.isSelected">
+<li (click)="selectItem()" (dblclick)="onOpenFolder()" [class.selected]="content.isSelected">
   <div>
     <mat-icon *ngIf="content.isFolder">folder</mat-icon>
     <mat-icon *ngIf="!content.isFolder">music_note</mat-icon>

@@ -1,0 +1,8 @@
+<div class="container">
+  <mat-chip-list>
+    <span *ngFor="let item of breadCrumbs; let i = index">
+      <mat-chip (click)="onClick(i)">{{item}}</mat-chip>
+      <span *ngIf="i != breadCrumbs.length - 1" class="separator">></span>
+    </span>
+  </mat-chip-list>
+</div>

@@ -13,6 +13,9 @@ import { WebSocketConnectionService } from './web-socket-connection.service';
   providedIn: 'root'
 })
 export class NetRadioMusicService extends MusicService {
+  getBreadCrumbs(): string[] {
+    return [];
+  }
 
   serverPlayerState: BehaviorSubject<ServerPlayerState>;
 
