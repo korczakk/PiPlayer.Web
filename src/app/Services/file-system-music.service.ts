@@ -58,7 +58,7 @@ export class FileSystemMusicService extends MusicService {
 
   currenltyPlayingItemPredicate(currentPlayerState: ServerPlayerState) {
     return (value: FileSystemMusic, index: number, obj: ContentMusic[]) => {
-      if((value.path + value.name) === currentPlayerState.fileName) {
+      if((`${value.path}/${value.name}`) === currentPlayerState.fileName) {
         return value;
       }
     }

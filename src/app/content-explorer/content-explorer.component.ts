@@ -33,7 +33,7 @@ export class ContentExplorerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.menuSelectionSubscription = this.topMenuService.menuSevection
+    this.menuSelectionSubscription = this.topMenuService.menuSelection
       .subscribe(async menuItem => this.onMenuSelectionChange(menuItem));
 
     this.musicService.checkPlayerServerState();
@@ -61,6 +61,7 @@ export class ContentExplorerComponent implements OnInit, OnDestroy {
   async openFolder(item: ContentMusic) {
     this.contentToDisplay = await this.musicService.getData(item.name);
     this.breadCrumbs = this.musicService.getRelativePath();
+    this.selectCurrentlyPlayingItem(this.musicService.serverPlayerState.getValue());
   }
 
   private deselectItem() {

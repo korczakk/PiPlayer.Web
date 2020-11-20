@@ -1,5 +1,5 @@
   <div class="container box">
-    <button mat-icon-button *ngIf="menuSelection === menuItem.Playlists" [disabled]="playerState.state === PlayerStateEnum.NotConnected || !contentExplorerHasSelectedItem.getValue()">
+    <button mat-icon-button (click)="previous()" *ngIf="menuSelection !== menuItem.NetRadios" [disabled]="playerState.state === PlayerStateEnum.NotConnected || !contentExplorerHasSelectedItem.getValue()">
       <mat-icon >skip_previous</mat-icon>
     </button>
     <button mat-icon-button (click)="play()" [disabled]="playerState.state === PlayerStateEnum.NotConnected || !contentExplorerHasSelectedItem.getValue()">
@@ -8,7 +8,7 @@
     <button mat-icon-button (click)="stop()" [disabled]="playerState.state === PlayerStateEnum.NotConnected || playerState.state === PlayerStateEnum.Stoped || playerState.state === PlayerStateEnum.WaitingForCommand">
       <mat-icon>stop</mat-icon>
     </button>
-    <button mat-icon-button *ngIf="menuSelection === menuItem.Playlists" [disabled]="playerState.state === PlayerStateEnum.NotConnected || !contentExplorerHasSelectedItem.getValue()">
+    <button mat-icon-button (click)="next()" *ngIf="menuSelection !== menuItem.NetRadios" [disabled]="playerState.state === PlayerStateEnum.NotConnected || !contentExplorerHasSelectedItem.getValue()">
       <mat-icon >skip_next</mat-icon>
     </button>
   </div>

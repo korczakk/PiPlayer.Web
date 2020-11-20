@@ -27,7 +27,7 @@ export class PlayerComponent implements OnDestroy, OnInit {
   constructor(private topMenuService: TopMenuService, private musicServiceFactory: MusicServicesFactoryService) { }
 
   ngOnInit(): void {
-    this.topMenuServiceSubscription = this.topMenuService.menuSevection.subscribe(menuSelection => {
+    this.topMenuServiceSubscription = this.topMenuService.menuSelection.subscribe(menuSelection => {
       this.menuSelection = menuSelection;
 
       this.musicService = this.musicServiceFactory.getMusicService(menuSelection);
@@ -48,5 +48,13 @@ export class PlayerComponent implements OnDestroy, OnInit {
 
   stop() {
     this.musicService.stop();
+  }
+
+  next() {
+    this.musicService.next();
+  }
+
+  previous() {
+    this.musicService.previous();
   }
 }

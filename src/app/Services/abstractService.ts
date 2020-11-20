@@ -25,6 +25,20 @@ export abstract class MusicService {
     });
   }
 
+  next() {
+    this.webSocket.sendCommand({
+      command: 'next',
+      parameter: ''
+    });
+  }
+
+  previous() {
+    this.webSocket.sendCommand({
+      command: 'previous',
+      parameter: ''
+    });
+  }
+
   checkPlayerServerState() {
     this.webSocket.sendCommand({
       command: 'checkState',

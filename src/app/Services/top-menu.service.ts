@@ -7,5 +7,5 @@ import { MenuItem } from '../Model/MenuItem';
 })
 export class TopMenuService {
 
-  menuSevection: BehaviorSubject<MenuItem> = new BehaviorSubject<MenuItem>(MenuItem.Files);
+  menuSelection: BehaviorSubject<MenuItem> = new BehaviorSubject<MenuItem>(MenuItem.Files);
 }
