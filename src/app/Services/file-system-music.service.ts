@@ -16,6 +16,7 @@ export class FileSystemMusicService extends MusicService {
   serverPlayerState: BehaviorSubject<ServerPlayerState>;
 
   private selectedItem: FileSystemMusic;
+  private relativePath = ['/'];
 
   constructor(private httpClient: HttpClient, protected webSocket: WebSocketConnectionService) {
     super(webSocket);
@@ -61,5 +62,13 @@ export class FileSystemMusicService extends MusicService {
         return value;
       }
     }
+  }
+
+  getRelativePath(): string[] {
+    return this.relativePath;
+  }
+
+  setRelativePath(newRelativePath: string[]) {
+    this.relativePath = [...newRelativePath];
   }
 }

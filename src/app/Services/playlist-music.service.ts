@@ -11,6 +11,12 @@ import { WebSocketConnectionService } from './web-socket-connection.service';
   providedIn: 'root'
 })
 export class PlaylistMusicService extends MusicService {
+  getRelativePath(): string[] {
+    throw new Error('Method not implemented.');
+  }
+  setRelativePath(newRelativePath: string[]) {
+    throw new Error('Method not implemented.');
+  }
   getItemSelected(): ContentMusic {
     throw new Error('Method not implemented.');
   }
