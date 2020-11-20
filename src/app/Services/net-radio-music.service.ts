@@ -14,7 +14,7 @@ import { WebSocketConnectionService } from './web-socket-connection.service';
 })
 export class NetRadioMusicService extends MusicService {
   getRelativePath(): string[] {
-    throw new Error('Method not implemented.');
+    return [];
   }
   setRelativePath(newRelativePath: string[]) {
     throw new Error('Method not implemented.');
