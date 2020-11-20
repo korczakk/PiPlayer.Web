@@ -46,7 +46,7 @@ export class FileSystemMusicService extends MusicService {
     if(this.selectedItem.isFolder) {
       this.webSocket.sendCommand({
         command: 'openFolder',
-        parameter: `${this.selectedItem.path}${this.selectedItem.name}`
+        parameter: `${this.selectedItem.path}/${this.selectedItem.name}`
       });
     } else {
       this.webSocket.sendCommand({
