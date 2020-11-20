@@ -1,52 +1,89 @@
-.menu-container {
-  display: flex;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: white;
-  font-size: medium;
-  margin-top: 0.2em;
+@media screen and (max-width: 768px) {
+  .top-menu {
+    display: block;
+  }
 
-  @media screen and (max-width: 768px) {
+  .hide-menu {
+    display: none;
+  }
+
+  .show-menu {
+    display: flex;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .menu-container {
+
     flex-direction: column;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: white;
   }
-}
 
-.menu-container > label {
-  @media screen and (min-width: 768px) {
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
+  .menu-container > label {
+    text-align: center;
+    width: 100%;
+    background-color: #ff006eff;
+    cursor: pointer;
   }
-  text-align: center;
-  width: 100%;
-  background-color: #ff006eff;
-  cursor: pointer;
-  border-radius: 5px;
 }
 
 @media screen and (min-width: 768px) {
+  .top-menu {
+    display: none;
+  }
+
+  .menu-container {
+    display: flex;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: white;
+    font-size: medium;
+    margin-top: 0.2em;
+  }
+
+  .menu-container > label {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+
+    text-align: center;
+    width: 100%;
+    background-color: #ff006eff;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
   .menu-container > label:nth-child(2) {
     border-right: 2px solid white;
     border-left: 2px solid white;
   }
+
+  input[type="radio"]:checked ~ .menu-item {
+    margin-bottom: 1em;
+  }
+
+  .menu-container > label:hover p {
+    font-weight: 900;
+  }
 }
 
-.menu-container > label:hover p {
-  font-weight: 900;
-}
+
 
 label > input {
   visibility: hidden;
 }
 
-// Handling selection
-.menu-item {
+ // Handling selection
+ .menu-item {
   visibility: hidden;
 }
 
 input[type="radio"]:checked ~ .menu-item {
   visibility: visible;
   border-top: 2px solid white;
-  margin-bottom: 1em;
   width: 60%;
   background-color: white;
 }

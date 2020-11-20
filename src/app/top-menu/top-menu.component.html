@@ -1,4 +1,8 @@
-<div class="menu-container">
+<button mat-icon-button class="top-menu" (click)="mobileMenuVisible = !mobileMenuVisible">
+  <mat-icon>menu</mat-icon>
+</button>
+
+<div class="menu-container" [ngClass]="{'show-menu': mobileMenuVisible, 'hide-menu': !mobileMenuVisible}">
   <label for="files" >
     <input (click)="menuSelected(MenuItem.Files)" id="files" name="menu" type="radio" checked="true"/>
     <p>Files</p>

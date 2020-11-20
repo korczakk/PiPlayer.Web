@@ -1,7 +1,15 @@
 .container {
   margin-top: 1em;
-  height: calc(100vh - 14.5em);
-  max-height: 75vh;
+
+  @media screen and (min-width: 768px) {
+    height: calc(100vh - 14.5em);
+    max-height: 75vh;
+  }
+
+  @media screen and (max-width: 768px) {
+    height: 100vh;
+    max-height: 80vh;
+  }
   overflow-y: auto;
 }
 

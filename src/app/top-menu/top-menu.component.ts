@@ -10,6 +10,7 @@ import { TopMenuService } from '../Services/top-menu.service';
 export class TopMenuComponent {
 
   MenuItem = MenuItem;
+  mobileMenuVisible = false;
 
   constructor(private menuService: TopMenuService) {  }
 
