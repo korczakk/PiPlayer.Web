@@ -1,8 +1,15 @@
 <div class="container box">
 
-  <div class="content-path-box">
-    <app-bread-crumbs [breadCrumbs]="breadCrumbs" (breadCrumbClicked)="breadCrumbCliekce($event)">
-    </app-bread-crumbs>
+  <div class="top-navigation-box">
+    <div class="breadcrubms">
+      <app-bread-crumbs [breadCrumbs]="breadCrumbs" (breadCrumbClicked)="breadCrumbCliekce($event)">
+      </app-bread-crumbs>
+    </div>
+    <div>
+      <button mat-icon-button  class="more-menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </div>
   </div>
 
   <div class="content-box">

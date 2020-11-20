@@ -5,9 +5,21 @@
   overflow-y: auto;
 }
 
-.content-path-box {
+.top-navigation-box {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  justify-content: flex-end;
+
+  .breadcrubms {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .more-menu {
+    margin-right: 0.5em;
+  }
 }
 
 .content-box {
@@ -28,3 +40,5 @@
     visibility: visible;
   }
 }
+
+
