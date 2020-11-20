@@ -13,9 +13,9 @@ export abstract class MusicService {
   abstract setItemSelected(item: ContentMusic);
   abstract currenltyPlayingItemPredicate(currentPlayerState: ServerPlayerState);
   abstract getItemSelected(): ContentMusic;
-  abstract getBreadCrumbs(): string[];
 
   isItemSelected = new BehaviorSubject<boolean>(false);
+  protected relativePath = ['/'];
 
   stop() {
     this.webSocket.sendCommand({
@@ -29,5 +29,13 @@ export abstract class MusicService {
       command: 'checkState',
       parameter: ''
     });
+  }
+
+  getRelativePath(): string[] {
+    return this.relativePath;
+  }
+
+  setRelativePath(newRelativePath: string[]) {
+    this.relativePath = [...newRelativePath];
   }
 }

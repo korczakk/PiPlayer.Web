@@ -15,8 +15,7 @@ export class FileSystemMusicService extends MusicService {
 
   serverPlayerState: BehaviorSubject<ServerPlayerState>;
 
-  private selectedFile: FileSystemMusic;
-  private relativePath = ['/'];
+  private selectedItem: FileSystemMusic;
 
   constructor(private httpClient: HttpClient, protected webSocket: WebSocketConnectionService) {
     super(webSocket);
@@ -24,29 +23,36 @@ export class FileSystemMusicService extends MusicService {
   }
 
   setItemSelected(item: FileSystemMusic) {
-    this.selectedFile = item;
+    this.selectedItem = item;
     this.isItemSelected.next(true);
   }
 
   getItemSelected(): ContentMusic {
-    return this.selectedFile;
+    return this.selectedItem;
   }
 
   getData(pathToData?: string): Promise<FileSystemMusic[]> {
     if(pathToData) {
       this.relativePath.push(pathToData);
     }
-    const path = this.relativePath.join('/');
-    const query = `?foldername=${path}`;
+    const path = this.relativePath.join('/').replace('//', '/');
+    const query = path ? `?foldername=${path}` : '';
     return this.httpClient.get<FileSystemMusic[]>(`${environment.serverAddress}/getFolderContent${query}`)
       .toPromise();
   }
 
   play() {
-    this.webSocket.sendCommand({
-      command: 'openFile',
-      parameter: `${this.selectedFile.path}${this.selectedFile.name}`
-    });
+    if(this.selectedItem.isFolder) {
+      this.webSocket.sendCommand({
+        command: 'openFolder',
+        parameter: `${this.selectedItem.path}${this.selectedItem.name}`
+      });
+    } else {
+      this.webSocket.sendCommand({
+        command: 'openFile',
+        parameter: `${this.selectedItem.path}/${this.selectedItem.name}`
+      });
+    }
   }
 
   currenltyPlayingItemPredicate(currentPlayerState: ServerPlayerState) {
@@ -55,9 +61,5 @@ export class FileSystemMusicService extends MusicService {
         return value;
       }
     }
-  }
-
-  getBreadCrumbs(): string[] {
-    return this.relativePath;
   }
 }

@@ -7,9 +7,7 @@ export class BaseContentComponent {
   @Output() itemSelected = new EventEmitter<ContentMusic>();
 
   selectItem() {
-    if(!this.content.isFolder) {
-      this.itemSelected.emit(this.content);
-      this.content.isSelected = true;
-    }
+    this.itemSelected.emit(this.content);
+    this.content.isSelected = true;
   }
 }

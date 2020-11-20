@@ -48,7 +48,7 @@ export class ContentExplorerComponent implements OnInit, OnDestroy {
     this.musicService = this.serviceFactory.getMusicService(menuItem);
 
     this.contentToDisplay = await this.musicService.getData();
-    this.breadCrumbs = this.musicService.getBreadCrumbs();
+    this.breadCrumbs = this.musicService.getRelativePath();
     this.selectCurrentlyPlayingItem(this.musicService.serverPlayerState.getValue());
   }
 
@@ -60,10 +60,10 @@ export class ContentExplorerComponent implements OnInit, OnDestroy {
 
   async openFolder(item: ContentMusic) {
     this.contentToDisplay = await this.musicService.getData(item.name);
-    this.breadCrumbs = this.musicService.getBreadCrumbs();
+    this.breadCrumbs = this.musicService.getRelativePath();
   }
 
-  deselectItem() {
+  private deselectItem() {
     let currentlySelectedItem = this.contentToDisplay.find(x => x.isSelected);
     if(currentlySelectedItem) {
       currentlySelectedItem.isSelected = false;
@@ -80,5 +80,11 @@ export class ContentExplorerComponent implements OnInit, OnDestroy {
         this.musicService.setItemSelected(foundContent);
       }
     }
+  }
+
+  async breadCrumbCliekce(newRelativePath: string[]) {
+    this.musicService.setRelativePath(newRelativePath);
+    this.contentToDisplay = await this.musicService.getData();
+    this.breadCrumbs = newRelativePath;
   }
 }
