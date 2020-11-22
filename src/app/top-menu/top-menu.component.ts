@@ -16,5 +16,6 @@ export class TopMenuComponent {
 
   menuSelected(item: MenuItem) {
     this.menuService.menuSelection.next(item);
+    this.mobileMenuVisible = false;
   }
 }
