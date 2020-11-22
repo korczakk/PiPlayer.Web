@@ -59,6 +59,9 @@ export class ContentExplorerComponent implements OnInit, OnDestroy {
   }
 
   async openFolder(item: ContentMusic) {
+    if(this.musicService.serverPlayerState.getValue().state === PlayerStateEnum.NotConnected) {
+      return;
+    }
     this.contentToDisplay = await this.musicService.getData(item.name);
     this.breadCrumbs = this.musicService.getRelativePath();
     this.selectCurrentlyPlayingItem(this.musicService.serverPlayerState.getValue());
