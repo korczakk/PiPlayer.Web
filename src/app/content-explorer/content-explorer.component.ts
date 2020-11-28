@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { Subscription } from 'rxjs';
+import { AddOnlineRadioComponent } from '../add-online-radio/add-online-radio.component';
 import { ContentMusic } from '../Model/ContentMusic';
 import { MenuItem } from '../Model/MenuItem';
 import { ServerPlayerState } from '../Model/playerState';
@@ -25,7 +27,8 @@ export class ContentExplorerComponent implements OnInit, OnDestroy {
   private playerStateSubscription: Subscription;
 
   constructor(private serviceFactory: MusicServicesFactoryService,
-    private topMenuService: TopMenuService) { }
+    private topMenuService: TopMenuService,
+    private matDialog: MatDialog) { }
 
   ngOnDestroy(): void {
     this.menuSelectionSubscription.unsubscribe();
@@ -90,5 +93,9 @@ export class ContentExplorerComponent implements OnInit, OnDestroy {
     this.musicService.setRelativePath(newRelativePath);
     this.contentToDisplay = await this.musicService.getData();
     this.breadCrumbs = newRelativePath;
+  }
+
+  openAddNewOnlineRadio() {
+    this.matDialog.open(AddOnlineRadioComponent);
   }
 }

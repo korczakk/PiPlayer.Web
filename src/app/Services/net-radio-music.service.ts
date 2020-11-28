@@ -5,7 +5,6 @@ import { environment } from 'src/environments/environment';
 import { ContentMusic } from '../Model/ContentMusic';
 import { NetRadioContentMusic } from '../Model/NetRadioMusic';
 import { ServerPlayerState } from '../Model/playerState';
-import { PlayerStateEnum } from '../Model/PlayerStateEnum';
 import { MusicService } from './abstractService';
 import { WebSocketConnectionService } from './web-socket-connection.service';
 
@@ -13,12 +12,6 @@ import { WebSocketConnectionService } from './web-socket-connection.service';
   providedIn: 'root'
 })
 export class NetRadioMusicService extends MusicService {
-  getRelativePath(): string[] {
-    return [];
-  }
-  setRelativePath(newRelativePath: string[]) {
-    throw new Error('Method not implemented.');
-  }
 
   serverPlayerState: BehaviorSubject<ServerPlayerState>;
 
@@ -56,5 +49,13 @@ export class NetRadioMusicService extends MusicService {
         return value;
       }
     }
+  }
+
+  getRelativePath(): string[] {
+    return [];
+  }
+
+  setRelativePath(newRelativePath: string[]) {
+    throw new Error('Method not implemented.');
   }
 }

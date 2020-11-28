@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatButtonModule, MatChipsModule, MatIconModule } from '@angular/material/'
+import { MatButtonModule, MatChipsModule, MatDialogModule, MatIconModule, MatMenuModule } from '@angular/material/'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +14,7 @@ import { PlaylistItemComponent } from './contentComponents/playlist-item/playlis
 import { NetRadioItemComponent } from './contentComponents/net-radio-item/net-radio-item.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BreadCrumbsComponent } from './bread-crumbs/bread-crumbs.component';
+import { AddOnlineRadioComponent } from './add-online-radio/add-online-radio.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { BreadCrumbsComponent } from './bread-crumbs/bread-crumbs.component';
     FileSystemItemComponent,
     PlaylistItemComponent,
     NetRadioItemComponent,
-    BreadCrumbsComponent
+    BreadCrumbsComponent,
+    AddOnlineRadioComponent
   ],
   imports: [
     BrowserModule,
@@ -34,9 +36,13 @@ import { BreadCrumbsComponent } from './bread-crumbs/bread-crumbs.component';
     MatIconModule,
     MatButtonModule,
     HttpClientModule,
-    MatChipsModule
+    MatChipsModule,
+    MatMenuModule,
+    MatDialogModule,
+    MatButtonModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AddOnlineRadioComponent]
 })
 export class AppModule { }

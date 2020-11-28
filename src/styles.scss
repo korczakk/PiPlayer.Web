@@ -19,3 +19,19 @@ body {
   background-color: white;
   border: 1px solid #c4c3c0;
 }
+
+// Context menu
+
+.mat-menu-panel {
+  background-color: white;
+}
+
+.mat-menu-item,
+.mat-menu-item .mat-icon-no-color {
+  color: black;
+}
+
+.mat-dialog-container {
+  background-color: white;
+  color: black;
+}
