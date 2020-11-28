@@ -1,1 +1,12 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
 
+.content-explorer {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 50vh;
+}
