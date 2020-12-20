@@ -1,12 +1,32 @@
-<div mat-mat-dialog-title>
+<h2 mat-mat-dialog-title>
   Add new online radio station
-</div>
+</h2>
 
 <div mat-dialog-content>
+  <form [formGroup]="form" autocomplete="off">
+    <p>
+      <mat-form-field appearance="standard">
+        <mat-label >Radio name:</mat-label>
+        <input type="text" #inputName="matInput" matInput formControlName="name" placeholder="Type radio station name"/>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="standard">
+        <mat-label>URL:</mat-label>
+        <input type="url" matInput formControlName="radioUrl"  placeholder="http://radio.com.pl"/>
+      </mat-form-field>
+    </p>
+  </form>
+</div>
 
+<div class="error" *ngIf="requestError">
+  <p>
+    Could not save data due to error.
+  </p>
+  <p>{{requestError?.statusText}}</p>
 </div>
 
 <div mat-dialog-actions>
-  <button mat-raised-button color="primary">Save</button>
-  <button mat-raised-button >Cancel</button>
+  <button mat-raised-button [disabled]="!form.valid" (click)="onSave()" color="primary">Save</button>
+  <button mat-raised-button (click)="onCancel()">Cancel</button>
 </div>

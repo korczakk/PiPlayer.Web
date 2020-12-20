@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatButtonModule, MatChipsModule, MatDialogModule, MatIconModule, MatMenuModule } from '@angular/material/'
+import { MatButtonModule, MatChipsModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule } from '@angular/material/'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +15,7 @@ import { NetRadioItemComponent } from './contentComponents/net-radio-item/net-ra
 import { HttpClientModule } from '@angular/common/http';
 import { BreadCrumbsComponent } from './bread-crumbs/bread-crumbs.component';
 import { AddOnlineRadioComponent } from './add-online-radio/add-online-radio.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,10 @@ import { AddOnlineRadioComponent } from './add-online-radio/add-online-radio.com
     MatChipsModule,
     MatMenuModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent],

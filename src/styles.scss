@@ -33,7 +33,27 @@ body {
   color: black;
 }
 
+// Dialog windows
+
 .mat-dialog-container {
   background-color: white;
+  color: black;
+}
+
+.mat-raised-button.mat-primary[disabled] {
+  background-color: #c2185b;
+  opacity: 0.5;
+  color: white;
+}
+
+.mat-form-field-appearance-standard .mat-form-field-underline {
+  background-color: black;
+}
+
+.mat-form-field-ripple {
+  background-color: black;
+}
+
+.mat-form-field-label {
   color: black;
 }

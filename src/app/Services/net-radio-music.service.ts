@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ContentMusic } from '../Model/ContentMusic';
 import { NetRadioContentMusic } from '../Model/NetRadioMusic';
@@ -56,6 +56,10 @@ export class NetRadioMusicService extends MusicService {
   }
 
   setRelativePath(newRelativePath: string[]) {
-    throw new Error('Method not implemented.');
+  }
+
+  addNewRadioStation(newStation: NetRadioContentMusic): Observable<NetRadioContentMusic[]> {
+    const json = JSON.stringify(newStation);
+    return this.httpClient.post<NetRadioContentMusic[]>(`${environment.serverAddress}/netRadioStations`, newStation);
   }
 }

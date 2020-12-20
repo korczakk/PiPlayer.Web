@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { Subscription } from 'rxjs';
 import { AddOnlineRadioComponent } from '../add-online-radio/add-online-radio.component';
+import { AddOnlineRadioDialogResult } from '../Model/AddOnlineRadioDialogResult';
 import { ContentMusic } from '../Model/ContentMusic';
 import { MenuItem } from '../Model/MenuItem';
 import { ServerPlayerState } from '../Model/playerState';
@@ -25,6 +26,7 @@ export class ContentExplorerComponent implements OnInit, OnDestroy {
 
   private menuSelectionSubscription: Subscription;
   private playerStateSubscription: Subscription;
+  private dialogSubscription: Subscription;
 
   constructor(private serviceFactory: MusicServicesFactoryService,
     private topMenuService: TopMenuService,
@@ -33,6 +35,7 @@ export class ContentExplorerComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.menuSelectionSubscription.unsubscribe();
     this.playerStateSubscription.unsubscribe();
+    this.dialogSubscription.unsubscribe();
   }
 
   ngOnInit() {
@@ -47,6 +50,7 @@ export class ContentExplorerComponent implements OnInit, OnDestroy {
   }
 
   async onMenuSelectionChange(menuItem: MenuItem) {
+    this.contentToDisplay = [];
     this.menuSelection = menuItem;
     this.musicService = this.serviceFactory.getMusicService(menuItem);
 
@@ -62,7 +66,7 @@ export class ContentExplorerComponent implements OnInit, OnDestroy {
   }
 
   async openFolder(item: ContentMusic) {
-    if(this.musicService.serverPlayerState.getValue().state === PlayerStateEnum.NotConnected) {
+    if (this.musicService.serverPlayerState.getValue().state === PlayerStateEnum.NotConnected) {
       return;
     }
     this.contentToDisplay = await this.musicService.getData(item.name);
@@ -72,7 +76,7 @@ export class ContentExplorerComponent implements OnInit, OnDestroy {
 
   private deselectItem() {
     let currentlySelectedItem = this.contentToDisplay.find(x => x.isSelected);
-    if(currentlySelectedItem) {
+    if (currentlySelectedItem) {
       currentlySelectedItem.isSelected = false;
     }
   }
@@ -96,6 +100,15 @@ export class ContentExplorerComponent implements OnInit, OnDestroy {
   }
 
   openAddNewOnlineRadio() {
-    this.matDialog.open(AddOnlineRadioComponent);
+    this.dialogSubscription = this.matDialog
+      .open(AddOnlineRadioComponent, {
+        width: '30em'
+      })
+      .afterClosed()
+      .subscribe((result: AddOnlineRadioDialogResult) => {
+        if(result.confirmed) {
+          this.contentToDisplay = result.radioStations;
+        }
+      });
   }
 }

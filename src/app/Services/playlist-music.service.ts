@@ -15,7 +15,7 @@ export class PlaylistMusicService extends MusicService {
     return [];
   }
   setRelativePath(newRelativePath: string[]) {
-    throw new Error('Method not implemented.');
+
   }
   getItemSelected(): ContentMusic {
     return null;
@@ -38,8 +38,9 @@ export class PlaylistMusicService extends MusicService {
   getData(): Promise<ContentMusic[]>  {
     return null;
   }
+
   play() {
-    throw new Error('Method not implemented.');
+
   }
 
   currenltyPlayingItemPredicate(currentPlayerState: ServerPlayerState) {
