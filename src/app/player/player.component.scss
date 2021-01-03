@@ -1,7 +1,21 @@
 .container {
   display: flex;
-  justify-content: center;
   margin-top: 1em;
+  align-items: center;
+
+  .buttons {
+    display: flex;
+    margin-left: 10vw;
+  }
+
+  .currently-plating {
+    width: 20vw;
+    margin-left:0.7em;
+
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+  }
 }
 
 button {

@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BreadCrumbsComponent } from './bread-crumbs/bread-crumbs.component';
 import { AddOnlineRadioComponent } from './add-online-radio/add-online-radio.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CurrentlyPlayingComponent } from './currently-playing/currently-playing.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     PlaylistItemComponent,
     NetRadioItemComponent,
     BreadCrumbsComponent,
-    AddOnlineRadioComponent
+    AddOnlineRadioComponent,
+    CurrentlyPlayingComponent
   ],
   imports: [
     BrowserModule,
