@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
+import { CurrentlyPlayingMode } from '../Model/CurrentlyPlayingMode';
 import { MenuItem } from '../Model/MenuItem';
 import { ServerPlayerState } from '../Model/playerState';
 import { PlayerStateEnum } from '../Model/PlayerStateEnum';

@@ -1,4 +1,6 @@
-<p>
+<p
+  matTooltip="{{currentlyPlaying}}"
+  [matTooltipDisabled]="!showMore">
   {{displayCurrentlyPlaying}}
   <span *ngIf="showMore" class="show-more">...</span>
 </p>

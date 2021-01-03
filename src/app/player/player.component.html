@@ -3,6 +3,13 @@
     class="currently-plating"
     [currentlyPlaying]="playerState?.title">
   </app-currently-playing>
+  <div class="currently-playing-info" (click)="tooltip.show()">
+    <mat-icon #tooltip="matTooltip"
+      matTooltip="{{playerState?.title}}"
+      matTooltipPosition="above">
+      info
+    </mat-icon>
+  </div>
   <div class="buttons">
     <button
     mat-icon-button

@@ -57,3 +57,12 @@ body {
 .mat-form-field-label {
   color: black;
 }
+
+// Tooltip
+
+.mat-tooltip {
+  background-color: #ff006eff;
+  border: 1px solid #c2185b;
+  font-size: larger;
+  padding: 1em;
+}

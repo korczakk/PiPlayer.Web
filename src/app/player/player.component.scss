@@ -12,7 +12,18 @@
     width: 20vw;
     margin-left:0.7em;
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 769px) {
+      display: none;
+    }
+  }
+
+  .currently-playing-info {
+    margin-left: 1em;
+
+    @media screen and (min-width: 768px) {
+      display: block;
+    }
+    @media screen and (min-width: 769px) {
       display: none;
     }
   }
