@@ -65,6 +65,3 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
   entryComponents: [AddOnlineRadioComponent]
 })
 export class AppModule { }
-
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
