@@ -45,4 +45,11 @@ export abstract class MusicService {
       parameter: ''
     });
   }
+
+  setVolume(volumePercent: number) {
+    this.webSocket.sendCommand({
+      command: 'volume',
+      parameter: volumePercent.toString()
+    });
+  }
 }

@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatSlider, MatSliderChange } from '@angular/material';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { CurrentlyPlayingMode } from '../Model/CurrentlyPlayingMode';
 import { MenuItem } from '../Model/MenuItem';
 import { ServerPlayerState } from '../Model/playerState';
 import { PlayerStateEnum } from '../Model/PlayerStateEnum';
@@ -15,12 +15,19 @@ import { TopMenuService } from '../Services/top-menu.service';
 })
 export class PlayerComponent implements OnDestroy, OnInit {
 
+  @ViewChild("slider", { static: false }) slider: MatSlider;
+  @HostListener("document:keydown.escape", ['$event']) onHostListener(e: KeyboardEvent) {
+    this.volumeControlOpen = false;
+  }
+
   menuSelection: MenuItem;
   menuItem = MenuItem;
   musicService: MusicService;
   playerState: ServerPlayerState;
   PlayerStateEnum = PlayerStateEnum;
   contentExplorerHasSelectedItem: BehaviorSubject<boolean>;
+  volumeControlOpen = false;
+  volumeLevel = 50;
 
   topMenuServiceSubscription: Subscription;
   playerStateSubscription: Subscription;
@@ -57,5 +64,16 @@ export class PlayerComponent implements OnDestroy, OnInit {
 
   previous() {
     this.musicService.previous();
+  }
+
+  onVolumeChanging(val: MatSliderChange) {
+    this.musicService.setVolume(val.value);
+    this.volumeLevel = val.value;
+  }
+
+  onVolumeChanged(val: MatSliderChange) {
+    if(val.value <= 1) {
+      this.slider.value = 1;
+    }
   }
 }

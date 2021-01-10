@@ -1,54 +1,96 @@
 <div class="container box">
   <app-currently-playing
     class="currently-plating"
-    [currentlyPlaying]="playerState?.title">
+    [currentlyPlaying]="playerState?.title"
+  >
   </app-currently-playing>
   <div class="currently-playing-info" (click)="tooltip.show()">
-    <mat-icon #tooltip="matTooltip"
-      matTooltip="{{playerState?.title}}"
-      matTooltipPosition="above">
+    <mat-icon
+      #tooltip="matTooltip"
+      matTooltip="{{ playerState?.title }}"
+      matTooltipPosition="above"
+    >
       info
     </mat-icon>
   </div>
   <div class="buttons">
     <button
-    mat-icon-button
-    (click)="previous()"
-    *ngIf="menuSelection !== menuItem.NetRadios"
-    [disabled]="
-      playerState.state === PlayerStateEnum.NotConnected ||
-      !contentExplorerHasSelectedItem.getValue()"
-  >
-    <mat-icon>skip_previous</mat-icon>
-  </button>
-  <button
-    mat-icon-button
-    (click)="play()"
-    [disabled]="
-      playerState.state === PlayerStateEnum.NotConnected ||
-      !contentExplorerHasSelectedItem.getValue()"
-  >
-    <mat-icon>play_arrow</mat-icon>
-  </button>
-  <button
-    mat-icon-button
-    (click)="stop()"
-    [disabled]="
-      playerState.state === PlayerStateEnum.NotConnected ||
-      playerState.state === PlayerStateEnum.Stoped ||
-      playerState.state === PlayerStateEnum.WaitingForCommand"
-  >
-    <mat-icon>stop</mat-icon>
-  </button>
-  <button
-    mat-icon-button
-    (click)="next()"
-    *ngIf="menuSelection !== menuItem.NetRadios"
-    [disabled]="
-      playerState.state === PlayerStateEnum.NotConnected ||
-      !contentExplorerHasSelectedItem.getValue()"
-  >
-    <mat-icon>skip_next</mat-icon>
-  </button>
+      mat-icon-button
+      (click)="previous()"
+      *ngIf="menuSelection !== menuItem.NetRadios"
+      [disabled]="
+        playerState.state === PlayerStateEnum.NotConnected ||
+        !contentExplorerHasSelectedItem.getValue()
+      "
+    >
+      <mat-icon>skip_previous</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      (click)="play()"
+      [disabled]="
+        playerState.state === PlayerStateEnum.NotConnected ||
+        !contentExplorerHasSelectedItem.getValue()
+      "
+    >
+      <mat-icon>play_arrow</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      (click)="stop()"
+      [disabled]="
+        playerState.state === PlayerStateEnum.NotConnected ||
+        playerState.state === PlayerStateEnum.Stoped ||
+        playerState.state === PlayerStateEnum.WaitingForCommand
+      "
+    >
+      <mat-icon>stop</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      (click)="next()"
+      *ngIf="menuSelection !== menuItem.NetRadios"
+      [disabled]="
+        playerState.state === PlayerStateEnum.NotConnected ||
+        !contentExplorerHasSelectedItem.getValue()
+      "
+    >
+      <mat-icon>skip_next</mat-icon>
+    </button>
+  </div>
+  <div class="volume-control">
+    <mat-icon
+      color="primary"
+      (click)="volumeControlOpen = !volumeControlOpen"
+      #trigger="cdkOverlayOrigin"
+      cdkOverlayOrigin
+      class="volume-icon"
+    >
+      volume_up</mat-icon
+    >
   </div>
 </div>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayOpen]="volumeControlOpen"
+>
+  <div class="volume-control-overlay">
+    <mat-slider
+      color="primary"
+      vertical
+      #slider
+      min="0"
+      max="100"
+      step="1"
+      [value]="volumeLevel"
+      (input)="onVolumeChanging($event)"
+      (change)="onVolumeChanged($event)"
+    >
+    </mat-slider>
+    <span class="volume-control-value">
+      {{slider.value}}%
+    </span>
+  </div>
+</ng-template>
