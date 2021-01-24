@@ -1,0 +1,18 @@
+<button mat-icon-button [matMenuTriggerFor]="moreMenu">
+  <mat-icon>more_vert</mat-icon>
+</button>
+
+<mat-menu #moreMenu="matMenu">
+  <button mat-menu-item (click)="openAddNewOnlineRadio()" *ngIf="menuSelection === menuItem.NetRadios">
+    <mat-icon>add</mat-icon>
+    <span>Add online radio</span>
+  </button>
+  <button mat-menu-item (click)="removeOnlineRadio()"[disabled]="!(musicService.isItemSelected | async)" *ngIf="menuSelection === menuItem.NetRadios">
+    <mat-icon>delete</mat-icon>
+    <span>Remove online radio</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>search</mat-icon>
+    <span>Find item</span>
+  </button>
+</mat-menu>

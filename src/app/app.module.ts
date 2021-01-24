@@ -13,13 +13,14 @@ import { FileSystemItemComponent } from './contentComponents/file-system-item/fi
 import { PlaylistItemComponent } from './contentComponents/playlist-item/playlist-item.component';
 import { NetRadioItemComponent } from './contentComponents/net-radio-item/net-radio-item.component';
 import { HttpClientModule } from '@angular/common/http';
-import { BreadCrumbsComponent } from './bread-crumbs/bread-crumbs.component';
+import { BreadCrumbsComponent } from './content-explorer/bread-crumbs/bread-crumbs.component';
 import { AddOnlineRadioComponent } from './add-online-radio/add-online-radio.component';
 import {  ReactiveFormsModule } from '@angular/forms';
-import { CurrentlyPlayingComponent } from './currently-playing/currently-playing.component';
+import { CurrentlyPlayingComponent } from './player/currently-playing/currently-playing.component';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { RemoveOnlineRadioComponent } from './remove-online-radio/remove-online-radio.component';
+import { ContextMenuComponent } from './content-explorer/context-menu/context-menu.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { RemoveOnlineRadioComponent } from './remove-online-radio/remove-online-
     BreadCrumbsComponent,
     AddOnlineRadioComponent,
     CurrentlyPlayingComponent,
-    RemoveOnlineRadioComponent
+    RemoveOnlineRadioComponent,
+    ContextMenuComponent
   ],
   imports: [
     BrowserModule,

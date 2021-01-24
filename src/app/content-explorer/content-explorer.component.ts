@@ -1,18 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
 import { Subscription } from 'rxjs';
-import { AddOnlineRadioComponent } from '../add-online-radio/add-online-radio.component';
-import { RemoveOnlineRadioComponent } from '../remove-online-radio/remove-online-radio.component';
-import { AddOnlineRadioDialogResult } from '../Model/AddOnlineRadioDialogResult';
 import { ContentMusic } from '../Model/ContentMusic';
-import { RemoveOnlineRadioInputData } from '../Model/RemoveOnlineRadioInputData';
 import { MenuItem } from '../Model/MenuItem';
 import { ServerPlayerState } from '../Model/playerState';
 import { PlayerStateEnum } from '../Model/PlayerStateEnum';
 import { MusicService } from '../Services/abstractService';
 import { MusicServicesFactoryService } from '../Services/music-services-factory.service';
 import { TopMenuService } from '../Services/top-menu.service';
-import { NetRadioContentMusic } from '../Model/NetRadioMusic';
 
 @Component({
   selector: 'app-file-explorer',
@@ -29,16 +23,13 @@ export class ContentExplorerComponent implements OnInit, OnDestroy {
 
   private menuSelectionSubscription: Subscription;
   private playerStateSubscription: Subscription;
-  private dialogSubscription: Subscription;
 
   constructor(private serviceFactory: MusicServicesFactoryService,
-    private topMenuService: TopMenuService,
-    private matDialog: MatDialog) { }
+    private topMenuService: TopMenuService) { }
 
   ngOnDestroy(): void {
     this.menuSelectionSubscription.unsubscribe();
     this.playerStateSubscription.unsubscribe();
-    this.dialogSubscription.unsubscribe();
   }
 
   ngOnInit() {
@@ -103,25 +94,7 @@ export class ContentExplorerComponent implements OnInit, OnDestroy {
     this.breadCrumbs = newRelativePath;
   }
 
-  openAddNewOnlineRadio() {
-    this.dialogSubscription = this.matDialog
-      .open(AddOnlineRadioComponent, {
-        width: '30em'
-      })
-      .afterClosed()
-      .subscribe((result: AddOnlineRadioDialogResult) => {
-        if(result.confirmed) {
-          this.contentToDisplay = result.radioStations;
-        }
-      });
-  }
-
-  removeOnlineRadio() {
-    this.matDialog.open(RemoveOnlineRadioComponent, {
-      data: {
-        radioName: this.musicService.getItemSelected().name,
-        radioUrl: (this.musicService.getItemSelected() as NetRadioContentMusic).radioUrl
-      } as RemoveOnlineRadioInputData
-    })
+  onContentToDisplayChanged(newContentToDisplay: ContentMusic[]) {
+    this.contentToDisplay = [...newContentToDisplay];
   }
 }

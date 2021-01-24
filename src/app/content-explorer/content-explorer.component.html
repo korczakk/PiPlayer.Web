@@ -1,14 +1,19 @@
 <div class="container box">
-
   <div class="top-navigation-box">
     <div class="breadcrubms">
-      <app-bread-crumbs [breadCrumbs]="breadCrumbs" (breadCrumbClicked)="breadCrumbCliekce($event)">
+      <app-bread-crumbs
+        [breadCrumbs]="breadCrumbs"
+        (breadCrumbClicked)="breadCrumbCliekce($event)"
+      >
       </app-bread-crumbs>
     </div>
-    <div>
-      <button mat-icon-button [matMenuTriggerFor]="moreMenu" class="more-menu">
-        <mat-icon>more_vert</mat-icon>
-      </button>
+    <div class="more-menu">
+      <app-context-menu
+        [musicService]="musicService"
+        [menuSelection]="menuSelection"
+        (contentToDisplayChanged)="onContentToDisplayChanged($event)"
+      >
+      </app-context-menu>
     </div>
   </div>
 
@@ -17,35 +22,30 @@
       <ng-container [ngSwitch]="menuSelection">
         <ng-template [ngSwitchCase]="menuItem.Files">
           <app-file-system-item
-          (itemSelected)="itemSelected($event)"
-          [content]="item" *ngFor="let item of contentToDisplay"
-          (openFolder)="openFolder($event)">
+            (itemSelected)="itemSelected($event)"
+            [content]="item"
+            *ngFor="let item of contentToDisplay"
+            (openFolder)="openFolder($event)"
+          >
           </app-file-system-item>
         </ng-template>
         <ng-template [ngSwitchCase]="menuItem.Playlists">
-          <app-playlist-item (itemSelected)="itemSelected($event)" [content]="item" *ngFor="let item of contentToDisplay">
+          <app-playlist-item
+            (itemSelected)="itemSelected($event)"
+            [content]="item"
+            *ngFor="let item of contentToDisplay"
+          >
           </app-playlist-item>
         </ng-template>
         <ng-template [ngSwitchCase]="menuItem.NetRadios">
-          <app-net-radio-item (itemSelected)="itemSelected($event)" [content]="item" *ngFor="let item of contentToDisplay">
+          <app-net-radio-item
+            (itemSelected)="itemSelected($event)"
+            [content]="item"
+            *ngFor="let item of contentToDisplay"
+          >
           </app-net-radio-item>
         </ng-template>
       </ng-container>
     </ul>
   </div>
 </div>
-
-<mat-menu #moreMenu="matMenu">
-  <button mat-menu-item (click)="openAddNewOnlineRadio()" *ngIf="menuSelection === menuItem.NetRadios">
-    <mat-icon>add</mat-icon>
-    <span>Add online radio</span>
-  </button>
-  <button mat-menu-item (click)="removeOnlineRadio()"[disabled]="!(musicService.isItemSelected | async)" *ngIf="menuSelection === menuItem.NetRadios">
-    <mat-icon>delete</mat-icon>
-    <span>Remove online radio</span>
-  </button>
-  <button mat-menu-item>
-    <mat-icon>search</mat-icon>
-    <span>Find item</span>
-  </button>
-</mat-menu>
