@@ -62,4 +62,11 @@ export class NetRadioMusicService extends MusicService {
     const json = JSON.stringify(newStation);
     return this.httpClient.post<NetRadioContentMusic[]>(`${environment.serverAddress}/netRadioStations`, newStation);
   }
+
+  removeRadioStation(radioUrl: string): Observable<NetRadioContentMusic[]> {
+    const json = JSON.stringify(radioUrl);
+    return this.httpClient.delete<NetRadioContentMusic[]>(`${environment.serverAddress}/netRadioStations`, {
+      params: { ['radioUrl']: radioUrl }
+    });
+  }
 }

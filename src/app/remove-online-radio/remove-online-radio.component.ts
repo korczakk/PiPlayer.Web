@@ -13,11 +13,11 @@ export class RemoveOnlineRadioComponent {
     @Inject(MAT_DIALOG_DATA) public data: RemoveOnlineRadioInputData) { }
 
   onCancel() {
-    this.matDialog.close(true);
+    this.matDialog.close(false);
   }
 
   onConfirm() {
-    this.matDialog.close(false)
+    this.matDialog.close(true)
   }
 
 }

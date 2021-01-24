@@ -7,7 +7,7 @@
     <mat-icon>add</mat-icon>
     <span>Add online radio</span>
   </button>
-  <button mat-menu-item (click)="removeOnlineRadio()"[disabled]="!(musicService.isItemSelected | async)" *ngIf="menuSelection === menuItem.NetRadios">
+  <button mat-menu-item (click)="removeOnlineRadio()"[disabled]="!(netRadioMusicService.isItemSelected | async)" *ngIf="menuSelection === menuItem.NetRadios">
     <mat-icon>delete</mat-icon>
     <span>Remove online radio</span>
   </button>
