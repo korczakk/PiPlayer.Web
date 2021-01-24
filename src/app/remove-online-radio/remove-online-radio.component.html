@@ -1,0 +1,20 @@
+<h2 mat-mat-dialog-title>
+  Remove online radio
+</h2>
+
+<div mat-dialog-content>
+  Confirm removing the following online radio:
+</div>
+<div class="radio-details">
+  <div>
+    {{data.radioName}}
+  </div>
+  <div>
+    {{data.radioUrl}}
+  </div>
+</div>
+
+<div mat-dialog-actions class="actions">
+  <button mat-raised-button (click)="onConfirm()" color="primary">Yes</button>
+  <button mat-raised-button (click)="onCancel()">No!</button>
+</div>

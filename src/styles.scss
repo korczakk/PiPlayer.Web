@@ -35,6 +35,14 @@ body {
   color: black;
 }
 
+.mat-menu-item[disabled] {
+  color: rgba(0,0,0, 0.4);
+
+  mat-icon {
+    color: rgba(0,0,0, 0.4);
+  }
+}
+
 // Dialog windows
 
 .mat-dialog-container {

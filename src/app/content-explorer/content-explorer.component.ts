@@ -1,15 +1,18 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { Subscription } from 'rxjs';
 import { AddOnlineRadioComponent } from '../add-online-radio/add-online-radio.component';
+import { RemoveOnlineRadioComponent } from '../remove-online-radio/remove-online-radio.component';
 import { AddOnlineRadioDialogResult } from '../Model/AddOnlineRadioDialogResult';
 import { ContentMusic } from '../Model/ContentMusic';
+import { RemoveOnlineRadioInputData } from '../Model/RemoveOnlineRadioInputData';
 import { MenuItem } from '../Model/MenuItem';
 import { ServerPlayerState } from '../Model/playerState';
 import { PlayerStateEnum } from '../Model/PlayerStateEnum';
 import { MusicService } from '../Services/abstractService';
 import { MusicServicesFactoryService } from '../Services/music-services-factory.service';
 import { TopMenuService } from '../Services/top-menu.service';
+import { NetRadioContentMusic } from '../Model/NetRadioMusic';
 
 @Component({
   selector: 'app-file-explorer',
@@ -53,6 +56,7 @@ export class ContentExplorerComponent implements OnInit, OnDestroy {
     this.contentToDisplay = [];
     this.menuSelection = menuItem;
     this.musicService = this.serviceFactory.getMusicService(menuItem);
+    this.musicService.isItemSelected.next(false);
 
     this.contentToDisplay = await this.musicService.getData();
     this.breadCrumbs = this.musicService.getRelativePath();
@@ -110,5 +114,14 @@ export class ContentExplorerComponent implements OnInit, OnDestroy {
           this.contentToDisplay = result.radioStations;
         }
       });
+  }
+
+  removeOnlineRadio() {
+    this.matDialog.open(RemoveOnlineRadioComponent, {
+      data: {
+        radioName: this.musicService.getItemSelected().name,
+        radioUrl: (this.musicService.getItemSelected() as NetRadioContentMusic).radioUrl
+      } as RemoveOnlineRadioInputData
+    })
   }
 }
