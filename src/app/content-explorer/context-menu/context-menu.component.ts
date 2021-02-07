@@ -41,7 +41,7 @@ export class ContextMenuComponent implements OnDestroy {
         takeUntil(this.unsubscribe$)
       )
       .subscribe((result: AddOnlineRadioDialogResult) => {
-        if(result.confirmed) {
+        if (result.confirmed) {
           this.contentToDisplayChanged.emit(result.radioStations);
         }
       });
@@ -51,24 +51,18 @@ export class ContextMenuComponent implements OnDestroy {
     this.matDialog
       .open(RemoveOnlineRadioComponent, {
         width: '30%',
-      data: {
-        radioName: this.netRadioMusicService.getItemSelected().name,
-        radioUrl: (this.netRadioMusicService.getItemSelected() as NetRadioContentMusic).radioUrl
-      } as RemoveOnlineRadioInputData
-    })
+        data: {
+          radioName: this.netRadioMusicService.getItemSelected().name,
+          radioUrl: (this.netRadioMusicService.getItemSelected() as NetRadioContentMusic).radioUrl
+        } as RemoveOnlineRadioInputData
+      })
       .afterClosed()
       .pipe(
         takeUntil(this.unsubscribe$)
       )
-      .subscribe((confirmed: boolean) => {
-        if(confirmed) {
-          this.netRadioMusicService.removeRadioStation((this.netRadioMusicService.getItemSelected() as NetRadioContentMusic).radioUrl)
-          .pipe(
-            takeUntil(this.unsubscribe$)
-          )
-          .subscribe(netRadios => {
-            this.contentToDisplayChanged.emit(netRadios);
-          });
+      .subscribe((netRadios: NetRadioContentMusic[]) => {
+        if (netRadios.length > 0) {
+          this.contentToDisplayChanged.emit(netRadios);
         }
       });
   }
