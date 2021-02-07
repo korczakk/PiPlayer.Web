@@ -75,6 +75,8 @@
   cdkConnectedOverlay
   [cdkConnectedOverlayOrigin]="trigger"
   [cdkConnectedOverlayOpen]="volumeControlOpen"
+  [cdkConnectedOverlayHasBackdrop]=true
+  (backdropClick)="volumeControlOpen = false"
 >
   <div class="volume-control-overlay">
     <mat-slider
